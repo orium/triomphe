@@ -542,6 +542,7 @@ impl<T: ?Sized> Arc<T> {
     }
 
     /// Whether or not the `Arc` is uniquely owned (is the refcount 1?).
+    #[inline]
     pub fn is_unique(&self) -> bool {
         // See the extensive discussion in [1] for why this needs to be Acquire.
         //
@@ -550,6 +551,7 @@ impl<T: ?Sized> Arc<T> {
     }
 
     /// Gets the number of [`Arc`] pointers to this allocation
+    #[inline]
     pub fn count(this: &Self) -> usize {
         this.inner().count.load(Acquire)
     }
